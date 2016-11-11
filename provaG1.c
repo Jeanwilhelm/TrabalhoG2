@@ -18,7 +18,7 @@ typedef struct
 { 
 	int COD; 
 	char Nome[50]; 
-	int Telefone;
+	char Telefone;
 	char Endereco[50];
 	struct Registro * Proximo;
 } Registro; 
@@ -89,7 +89,7 @@ int main()
 						gets(&Agenda[COD]->Nome);
 						fflush(stdin);
 						printf("Entre com seu telefone: ");
-						scanf("%d",&Agenda[COD]->Telefone);
+						scanf("%c",&Agenda[COD]->Telefone);
 						fflush(stdin);
 						printf("Entre com sua endereco: ");
 						gets(&Agenda[COD]->Endereco);
@@ -150,7 +150,7 @@ int main()
 							//imprime as informacoes do registro encontrado
 							printf("\nRegistro: %d\n",Agenda[codE]->COD);
 							printf("Nome: %s\n",Agenda[codE]->Nome);
-							printf("Telefone: %d\n",Agenda[codE]->Telefone);
+							printf("Telefone: %s\n",Agenda[codE]->Telefone);
 							printf("Endereco: %s\n\n",Agenda[codE]->Endereco);
 							system("pause");
 							system("cls");
