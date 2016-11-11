@@ -1,0 +1,65 @@
+Algorítmo para a realização do exercício avaliativo para a G2.
+
+-Fazer a estrutura da forma que atenda ao que é pedido abaixo:
+		index
+		nome
+		numero
+		endereço
+		ponteiro (null)   <------malloc   (antes do malloc ponteiro é null, depois do malloc ponteiro deixa de ser null)
+		|
+		|
+  		|
+ 		---->   nova estrutua com:
+        		index +1
+		        nome
+			numero
+			endereço
+			ponteiro (null)   <------malloc   (antes do malloc ponteiro é null, depois do malloc ponteiro deixa de ser null)
+        		|
+  			|
+  			|
+  			---->   nova estrutua com:
+				index +1
+       				nome
+				numero
+				endereço
+				ponteiro (null)   <------malloc   (antes do malloc ponteiro é null, depois do malloc ponteiro deixa de ser null)
+                		|
+				|
+				|
+				----> (...)
+
+
+-Fazer um menu onde seja possível o usuário escolher se quer:
+	.Incluir um novo cadastro;
+	.Consultar um cadastro;
+	.Excluir um cadastro; e
+	.Sair do sistema.
+
+-Solicitar que o usuário escolha uma destas opções.
+	*Caso o usuário escolha Incluir um novo cadastro, o sistema deve validar da seguinte forma:
+		.Iniciar o identificador (COD) em 1, fazendo com que a cada novo registro seja incrementado este COD. Não pode haver CODs iguais;
+		.Solicitar que o usuário digite os dados cadastrais:
+			.Nome;
+			.Endereço;
+			.Telefone;
+		.Fazer a inclusão destes dados na primeira estrutura, utilizando alocação dinâmica;
+		.Criar uma nova lista a partir do ponteiro, conforme ilustrado no caso "Fazer a Estrutura";
+		.Incrementar o identificador e inicializar o ponteiro em null na nova lista. Conforme ilustrado no caso "Fazer a estrutura".
+
+	*Caso o usuário  escolha realizar a consulta por um cadastro, o sistema deve validar da seguinte forma:
+		.Solicitar que o usuário informe o COD do cadastro que deseja consultar;
+		.Utilizar o COD informado pelo usuário para localizar o cadastro que procura. Imprimindo este cadastro na tela;
+			+ MELHORIA: Caso sobre tempo ou consigamos fazer, validar a busca pelo nome também e não apenas pelo COD.
+
+	*Caso o usuário escolha Exlcuir um cadastro, o sistema deve validar da seguinte forma:
+		.Solicitar que o usuário informe o COD do cadastro que deseja excluir;
+		.Utilizar o COD informado pelo usuário para localizar o cadastro que procura;
+			+ MELHORIA: Caso sobre tempo ou consigamos fazer, validar a exclusão pelo nome também e não apenas pelo COD.
+		.Verificar se o ponteiro que está nesta lista está com com valor NULL ou não.
+			.Caso esteja NULL, fazer a exclusão sem problema algum;
+			.Caso esteja preenchido, o ponteiro da lista anterior deve apontar para o ponteiro da lista que está a ser excluído;
+		.Utilizar o comando FREE para liberar a memória do ponteiro anterior ao que está a ser excluído.
+
+	*Caso o usuário escolha Sair do sistema, o sistema deve validar sa seguinte forma:
+		.O programa deve ser finalizado.
