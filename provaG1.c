@@ -1,6 +1,6 @@
 //*************************************************************************************************
 //**                                Autor: André Menezes da Silva                                **
-//**                                Autor: Erico Edu Correa                                      **
+//**                                Autor: Ezequiel Losekann Drews                               **
 //**                                Autor: Jean Emílio Wilhelm                                   **
 //*************************************************************************************************
 //**                Função: Agenda para a prova de Laboratório de Algorítmos II                  **
@@ -18,10 +18,10 @@ typedef struct
 { 
 	int COD; 
 	char Nome[50]; 
-	char Telefone;
+	char Telefone[50];
 	char Endereco[50];
-	struct Registro * Proximo;
-} Registro; 
+	struct Estrutura * Proximo;
+} Estrutura; 
 
 
 int main()
@@ -230,7 +230,7 @@ int main()
 					printf("CREDITOS");
 					printf("\n\nPrograma desenvolvido pelos alunos:");
 					printf("\n\nAndre Menezes da Silva");
-					printf("\nErico Edu Correa");
+					printf("\nEzequiel Losekann Drews");
 					printf("\nJean Emilio Wilhelm\n\n");
 					system("pause");
 					system("cls");
