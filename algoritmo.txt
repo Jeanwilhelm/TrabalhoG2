@@ -58,8 +58,8 @@ Algorítmo para a realização do exercício avaliativo para a G2.
 			+ MELHORIA: Caso sobre tempo ou consigamos fazer, validar a exclusão pelo nome também e não apenas pelo COD.
 		.Verificar se o ponteiro que está nesta lista está com com valor NULL ou não.
 			.Caso esteja NULL, fazer a exclusão sem problema algum;
-			.Caso esteja preenchido, o ponteiro da lista anterior deve apontar para o ponteiro da lista que está a ser excluído;
-		.Utilizar o comando FREE para liberar a memória do ponteiro anterior ao que está a ser excluído.
+			.Caso esteja preenchido, o ponteiro da lista anterior deve apontar para o ponteiro da lista que está para ser excluída;
+		.Utilizar o comando FREE para liberar a memória do ponteiro que aponta para a estrutura que deve ser excluída.
 
 	*Caso o usuário escolha Sair do sistema, o sistema deve validar sa seguinte forma:
 		.O programa deve ser finalizado.
