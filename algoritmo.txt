@@ -74,6 +74,7 @@ Algorítmo para a realização do exercício avaliativo para a G2.
 
 	*Caso o usuário escolha "3_Exlcuir um cadastro", o sistema deve validar da seguinte forma:
 		.Solicitar que o usuário informe o COD do cadastro que deseja excluir;
+<<<<<<< HEAD
 		.Verifica o COD informado pelo usuário:
 			-Se o COD informado não existir, 
 				.Retornar mensagem dizendo: COD informado não existe.
@@ -96,3 +97,14 @@ Algorítmo para a realização do exercício avaliativo para a G2.
 
 	*Caso o usuário escolha "5_Sair do sistema", o sistema deve validar da seguinte forma:
 		.O programa deve ser finalizado.
+=======
+		.Utilizar o COD informado pelo usuário para localizar o cadastro que procura;
+			+ MELHORIA: Caso sobre tempo ou consigamos fazer, validar a exclusão pelo nome também e não apenas pelo COD.
+		.Verificar se o ponteiro que está nesta lista está com com valor NULL ou não.
+			.Caso esteja NULL, fazer a exclusão sem problema algum;
+			.Caso esteja preenchido, o ponteiro da lista anterior deve apontar para o ponteiro da lista que está para ser excluída;
+		.Utilizar o comando FREE para liberar a memória do ponteiro que aponta para a estrutura que deve ser excluída.
+
+	*Caso o usuário escolha Sair do sistema, o sistema deve validar sa seguinte forma:
+		.O programa deve ser finalizado.
+>>>>>>> 44771c9f2d886a5e7485a2f5d97d5818ee841902
