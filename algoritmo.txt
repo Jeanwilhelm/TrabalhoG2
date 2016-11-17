@@ -15,9 +15,9 @@ Algorítmo para a realização do exercício avaliativo para a G2.
 			numero
 			endereço
 			ponteiro (null)   <------malloc   (antes do malloc ponteiro é null, depois do malloc ponteiro deixa de ser null)
-        		|
-  			|
-  			|
+        		| 
+  			|  
+  			| 
   			---->   nova estrutua com:
 				index +1
        				nome
