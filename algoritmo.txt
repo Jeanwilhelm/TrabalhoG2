@@ -37,7 +37,6 @@ Algorítmo para a realização do exercício avaliativo para a G2.
 	.4_Créditos; e
 	.5_Sair do sistema.
 
-
 -Solicitar que o usuário escolha uma destas opções.
 	*Caso o usuário escolha "1_Incluir um novo cadastro", o sistema deve validar da seguinte forma:
 		.Verifica se já existem cadastros:
