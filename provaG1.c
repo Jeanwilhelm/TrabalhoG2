@@ -77,10 +77,10 @@ void Pesquisar(No* lista)
 {
     if(vazia(lista) > 0)
     {
-        char pesquisa[100], tipo[1];
+        char pesquisa[100], tipo;
         printf("\nPESQUISAR POR: NOME [N], TELEFONE [T] ou ENDERECO [E]? ");
         getchar();
-        gets(tipo);
+        gets(&tipo);
         printf("----->INFORME OS DADOS DA PESQUISA: ");
         gets(pesquisa);
 
