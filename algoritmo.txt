@@ -57,7 +57,7 @@ Algorítmo para a realização do exercício avaliativo para a G2.
 					-Incrementar o identificador e inicializar o ponteiro em null na nova lista. Conforme ilustrado no caso "Fazer a estrutura".
 			-Após incluir, o sistema volta ao menu principal.
 
-	
+
 	*Caso o usuário  escolha "2_Consultar um cadastro", o sistema deve validar da seguinte forma:
 		.Solicitar que o usuário informe o COD do cadastro que deseja consultar;
 		.Verifica o COD informado pelo usuário:

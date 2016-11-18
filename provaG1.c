@@ -11,256 +11,262 @@
 //*************************************************************************************************
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <conio.h>
+#include <locale.h>
 
-//organização/definição da estrutura usada
-typedef struct  
-{ 
-	int COD; 
-	char Nome[50]; 
-	char Telefone[50];
-	char Endereco[50];
-	struct Estrutura * Proximo;
-} Estrutura; 
+//***************************************************** FUNÇÕES *********************************************************//
 
-
-int main()
+struct agenda
 {
-	//Declaracao das variaveis utilizadas no programa
-	int Opcao, COD = 0;
-	Estrutura Primeira, *Ponteiro, *PrimeiraEstrutura;
-	PrimeiraEstrutura = &Primeira;
-	Primeira.Proximo = NULL;
-	
-		
-	//inicia o looping para controle de menu
-	while(1)
-	{
-		//declara a variavel responsavel pela opção do usuário
-		int Opcao = 0;
-		
-		printf("Entre com um comando:");
-		printf("\n\n1:Criar novo registro\n2:Buscar registro\n3:Apagar registro\n4:Creditos\n5:Sair do programa\n\nOpcao: ");
-		scanf("%d",&Opcao);
-		fflush(stdin);
-		
-		//inicia o switch para avaliar a opcao escolhida
-		switch(Opcao)
-		{
-			//caso Opcao seja 1
-			case 1:
-				{
-					//limpa a tela
-					system("cls");
-					printf("CADASTRO DE REGISTROS\n");
-					
-					//impede que o usuario cadastre novos registros caso nao tenha espaco
-					if(COD >= 50)
-					{
-						system("cls");
-						printf("ERRO!");
-						printf("\n\nNAO HA MAIS ESPACO NA SUA AGENDA. EXCLUA CONTATOS PARA LIBERAR ESPACOS");
-						system("pause");
-						system("cls");
-					}
-					
-					//caso tenha espaço
-					else
-					{
-						//utilizacao de um vetor para controlar quais registros tem informacao e quais nao tem
-						for(i=0;i<50;i++)
-						{
-							//caso o controle = 0, eh porque nao tem registros
-							if(Controle[i] == 0)
-							{
-								//passa ao codigo o valor em que Controle = 0
-								COD = i;
-								break;
-							}
-						}
-						
-						//alocação do ponteiro dinamicamente
-						Agenda[COD] = (struct Registro *)calloc(sizeof(Registro),1);
-						
-						//solicita informações ao usuário
-						printf("\nRegistro: %d\n", COD);
-						Agenda[COD]->COD = COD;
-						printf("Entre com o nome: ");
-						gets(&Agenda[COD]->Nome);
-						fflush(stdin);
-						printf("Entre com seu telefone: ");
-						scanf("%c",&Agenda[COD]->Telefone);
-						fflush(stdin);
-						printf("Entre com sua endereco: ");
-						gets(&Agenda[COD]->Endereco);
-						fflush(stdin);
-						printf("\n\n");
-						system("pause");
-						system("cls");
-						
-						//coloca o vetor de controle = 1
-						Controle[COD] = 1;
-						
-						//incrementa o CODIGO para controlar o vetor de ponteiros
-						COD++;
-					}
-					
-				}                        
-			break;
-			/*
-			//caso Opcao seja 2
-			case 2:
-				{
-					//inicia o looping para controle
-					while(1)
-					{
-						//limpa a tela
-						system("cls");
-						//declaracao das variaveis 
-						int codE, Temp, Outra;
-					
-						//caso o usuario informe um registro invalido
-						if(Outra==3)
-						printf("PARA VOLTAR DIGITE 666\n");
-						printf("\nBUSCAR POR REGISTROS\n");
-						
-						//usuario informa o registro que deseja buscar
-						printf("\nEntre com o registro desejado: ");
-						scanf("%d",&codE);
-						fflush(stdin);
-						
-						//caso o usuário queira sair da opcao
-						if(codE==666)
-						{
-							system("cls");
-							Outra = 0;
-							break;
-						}
-						
-						//caso o usuario informe um numero invalido ou que nao seja utilizado
-						else if(codE>COD-1 || codE < 0 || Controle[codE] == 0)
-						{
-							printf("\n\tNUMERO INVALIDO, DIGITE UM NUMERO VALIDO!\n\n");
-							Outra = 3;
-						}
-						
-						//caso o usuario digite uma informação válida
-						else
-						{
-							//imprime as informacoes do registro encontrado
-							printf("\nRegistro: %d\n",Agenda[codE]->COD);
-							printf("Nome: %s\n",Agenda[codE]->Nome);
-							printf("Telefone: %s\n",Agenda[codE]->Telefone);
-							printf("Endereco: %s\n\n",Agenda[codE]->Endereco);
-							system("pause");
-							system("cls");
-							Outra = 0;
-							break;
-						}
-						system("pause");
-						system("cls");
-					}
-				}
-			break;
-			//caso Opcao seja 3
-			case 3:
-				{
-					//inicia looping
-					while(1)
-					{	
-						//declaracao das variaveis
-						int codA, i, A = -1, outra;
-						
-						//limpa a tela
-						system("cls");
-												
-						//caso o usuário escolha um registro inválido
-						if(outra==3)
-						//exibe mensagem na tela
-						printf("PARA VOLTAR DIGITE 666\n");
-						printf("\nAPAGAR REGISTROS\n");
-						printf("\nDigite o codigo do registro a ser apagado: ");
-						scanf("%d",&codA);
-						fflush(stdin);
-						
-						//caso o usuario queira sair da opcao
-						if(codA == 666)
-							{
-								system("cls");
-								outra = 0;
-								break;
-							}
-						
-						//caso o usuario informe um numero invalido ou que nao seja utilizado
-						else if(codA > COD-1 || codA < 0 || Controle[codA] == 0)
-							{
-								//exibe mensagem na tela
-								printf("\n\tNUMERO INVALIDO, DIGITE UM NUMERO VALIDO!\n\n");
-								outra = 3;
-								printf("\n\n");
-								system("pause");
-								system("cls");
-							}
-						
-						//condicional caso o usuario digite um registro valido
-						else
-							{
-								printf("\nRegistro apagado!");
-								//libera o registro
-								free(Agenda[codA]);	
-								//posiciona o vetor de controle do codigo em 0 para poder receber outros cadastros
-								Controle[codA] = 0;
-								COD--;
-								printf("\n\n");
-								system("pause");
-								system("cls");
-								break;
-						}
-					}
-				}
-			break;
-			*/
+    char   nome     [100];
+    char   telefone [50] ;
+    char   endereco  [50] ;
 
-			//caso Opcao seja 4
-			case 4:
-				{
-					//limpa a tela
-					system("cls");
-					//exibe os creditos dos desenvolvedores na tela
-					printf("CREDITOS");
-					printf("\n\nPrograma desenvolvido pelos alunos:");
-					printf("\n\nAndre Menezes da Silva");
-					printf("\nEzequiel Losekann Drews");
-					printf("\nJean Emilio Wilhelm\n\n");
-					system("pause");
-					system("cls");
-				}
-			break;
-			//caso Opcao seja 5
-			case 5:
-				{
-					//limpa a tela
-					system("cls");
-					//exibe mensagem na tela
-					printf("VOCE ESCOLHEU SAIR DO PROGRAMA\n");
-					system("pause");
-				}
-			break;
-			//caso Opcao seja invalida
-			default:
-				{
-					//limpa a tela
-					system("cls");
-					//exibe mensagem na tela
-					printf("\nOPCAO INVALIDA!!! DIGITE NOVAMENTE!");
-				}
-		}
+    struct agenda *proximo;
+};
+
+//Tipo da Estrutura da Lista
+typedef struct agenda No;
+
+//Inicializa Lista
+No* inicializa()
+{
+    return NULL;
+}
+
+//Verifica se a lista está vazia, assim nAo retorna erro para o usuário
+int vazia(No* lista)
+{
+    if(lista == NULL)
+        return 0;
+    else
+        return 1;
+}
+
+//Alocar Memória
+No* aloca()
+{
+    No* var = (No*) malloc(sizeof(No));
+    return var;
+}
+
+//Incluir elementos na Lista
+No* Incluir (No* lista)
+{
+    printf("\n****************************** DIGITE SEUS DADOS ******************************\n\n");
+    No* novo = aloca();
+    //********************************************
+        getchar();
+        printf("DIGITE SEU NOME COMPLETO: ");
+        gets  (novo->nome    );
+        printf("TELEFONE                : ");
+        gets  (novo->telefone);
+        printf("ENDERECO                : ");
+        gets  (novo->endereco);
+        novo->proximo = lista ;
+    //********************************************
+        return novo;
+}
+
+
+
+//************************************************ INÍCIO PESQUISAR *****************************************************//
+//Pesquisa elementos na Lista
+void Pesquisar(No* lista)
+{
+    if(vazia(lista) > 0)
+    {
+        char pesquisa[100], tipo[1];
+        printf("\nPESQUISAR POR: NOME [N], TELEFONE [T] ou ENDERECO [E]? ");
+        getchar();
+        gets(tipo);
+        printf("----->INFORME OS DADOS DA PESQUISA: ");
+        gets(pesquisa);
+
+        No* aux;
+            for(aux = lista;aux != NULL;aux = aux->proximo)
+            {
+                if      ((strcmp(tipo,"N")) && (strcmp(pesquisa, lista->nome)      == 0))
+                    Imprimir(aux);
+                else if ((strcmp(tipo,"T")) && (strcmp(pesquisa, lista->telefone)  == 0))
+                    Imprimir(aux);
+                else if ((strcmp(tipo,"E")) && (strcmp(pesquisa, lista->endereco)   == 0))
+                    Imprimir(aux);
+                else
+                printf("\nELEMENTO NAO ENCONTRADO!\n");
+            }
+    }else
+     printf("\nA LISTA ESTÁ VAZIA!\n");
+     getchar();
+}
+
+
+//************************************************ FIM PESQUISAR ********************************************************//
+
+//************************************************ INÍCIO IMPRIMIR ******************************************************//
+//Imprimir Lista
+int Imprimir (No* lista)
+{
+        printf("\n\nOPERACAO SUCEDIDA COM SUCESSO!\n\n");
+        printf("Nome    :%s\n", lista->nome    );
+        printf("Telefone:%s\n", lista->telefone);
+        printf("Endereco :%s\n", lista->endereco );
+        printf("\n\n");
+        printf("PRESSIONE [ENTER] PARA VOLTAR AO MENU INICIAR.\n");
+}
+
+//Imprimi Lista Alterada
+int ImprimirAlterar (No* lista)
+{
+        printf("\n\nOPERACAO SUCEDIDA COM SUCESSO!\n\n");
+        printf("Nome    :%s\n", lista->nome    );
+        printf("Telefone:%s\n", lista->telefone);
+        printf("endereco :%s\n", lista->endereco );
+        printf("\n\n");
+        printf("PRESSIONE [ENTER] PARA ALTERAR CONTATO.\n");
+}
+//************************************************ FIM IMPRIMIR *********************************************************//
+
+
+
+//RAY LIST
+void Listar(No* lista)
+{
+    if(vazia(lista) > 0)
+    {
+        No* aux;
+        for(aux = lista;aux != NULL;aux = aux->proximo)
+        {
+            Imprimir(aux);
+        }
+        getchar();
+    }else
+    printf("\nA LISTA ESTÁ VAZIA!");
+    printf("\nPRESSIONE [ENTER] PARA VOLTAR AO MENU INICIAR.\n");
+    getchar();
+}
+
+
+//Troca os elementos da lista
+No* Alterar(No* lista)
+{
+    if(vazia(lista) > 0)
+    {
+        PesquisarAlterar(lista);
 		
-		//caso Opcao seja sair do programa
-		if(Opcao == 5)
-			{
-				//sai do programa
-				break;
-			}
-	}
+		system("cls");       
+
+           printf("*********************** DIGITE OS NOVOS DADOS ***********************: ");
+           printf("\nDIGITE SEU NOME COMPLETO: ");
+           gets  (lista->nome    );
+           printf("TELEFONE                  : ");
+           gets  (lista->telefone);
+           printf("ENDERECO                  : ");
+           gets  (lista->endereco );
+
+           printf("\n\n\n[ALTERADO]!");
+
+    }else
+    printf("\nA LISTA ESTÁ VAZIA!");
+    printf("\nPRESSIONE [ENTER] PARA VOLTAR AO MENU INICIAR.\n");
+    getchar();
+    return lista;
+}
+
+//Deleta elementos da lista
+No* Deletar (No* lista)
+{
+    if(vazia(lista) > 0)
+    {
+        No* ant = NULL;
+    	No* aux = lista;
+
+        char name[100];
+        printf("\n--->INFORME O NOME A DELETAR: ");
+        getchar();
+        gets(name);
+
+
+        while(aux != NULL && strcmp(aux->nome, name) != 0)
+        {
+            ant = aux;
+            aux = aux->proximo;
+        }
+             if(aux == NULL)
+                 return lista;
+             else if (ant == NULL)
+                 lista = aux->proximo;
+             else
+                 ant->proximo = aux->proximo;
+        free(aux);
+        printf("ELIMINACAO SUCEDIDA!");
+        printf("PRESSIONE [ENTER] PARA VOLTAR AO MENU INICIAR.\n");
+    }else
+    printf("\nA LISTA ESTÁ VAZIA!");
+    printf("\nPRESSIONE [ENTER] PARA VOLTAR AO MENU INICIAR.\n");
+    getchar();
+    return lista;
+}
+
+
+//Menu do sistema
+int Menu()
+{
+   int opcao;
+   system("cls");//limpa a tela
+   printf("*------------------------------- START MENU -------------------------------*\n");
+   printf("\n***************************\n");
+   printf("* [1] INCLUIR   CONTATO;  *  \n");
+   printf("* [2] PESQUISAR CONTATO;  *  \n");
+   printf("* [3] DELETAR   CONTATO;  *  \n");
+   printf("* [4] CREDITOS;           *  \n");
+   printf("* [5] SAIR  DO  CADASTRO; *  \n");
+   printf("***************************  \n");
+   printf("\n-->SELECIONE SUA OPCAO: "    );
+
+   scanf ("%d",&opcao);
+   return opcao;
+}
+
+//***************************************************** PROGRAMA PRINCIPAL **********************************************//
+
+void main()
+{
+    No* lista;
+    lista = inicializa();
+
+    int opcao = Menu();
+    while (opcao != 6 )
+    {          
+		  switch (opcao)
+		  {
+			  case 1:
+					lista = Incluir(lista);
+					break;
+			  case 2:
+					Pesquisar(lista);
+					break;
+			  case 3:
+					lista = Deletar(lista);
+					break;
+			  case 4:
+					system("cls");
+				printf("Programa desenvolvido pelos alunos:");
+				printf("\n\n Andre Menezes da Silva ");
+				printf("\n Ezequiel Losekann Drews");
+				printf("\n Jean Emilio Wilhelm ");
+				printf("\n\n Laboratorio de Algoritmos II - 30/09/2016\n\n\n\n");
+				system("PAUSE");
+				printf("\n\n");
+				system("cls");
+					break;
+			  case 5:
+					exit(0);
+					break;
+			  default:
+					exit(0);
+					break;
+		  }
+     opcao = Menu();
+    }
 }
