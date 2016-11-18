@@ -5,7 +5,7 @@
 //*************************************************************************************************
 //**                Função: Agenda para a prova de Laboratório de Algorítmos II                  **
 //*************************************************************************************************
-//**                          Arquivo alterado em 07 de outubro de 2016                          **
+//**                          Arquivo alterado em 18 de Novembro de 2016                         **
 //**                     Aula de Laboratório de Algorítmos - Segundo Semestre                    **
 //*************************************************************************************************
 //*************************************************************************************************
@@ -80,59 +80,40 @@ void Pesquisar(No* lista)
         char pesquisa[100], tipo;
         printf("\nPESQUISAR POR: NOME [N], TELEFONE [T] ou ENDERECO [E]? ");
         getchar();
-        gets(&tipo);
+        gets(&tipo);//pega a opcao do usuario
         printf("----->INFORME OS DADOS DA PESQUISA: ");
         gets(pesquisa);
+
+//Laço de repetição com as devidas validações para pesquisar
 
         No* aux;
             for(aux = lista;aux != NULL;aux = aux->proximo)
             {
-                if      ((strcmp(tipo,"N")) && (strcmp(pesquisa, lista->nome)      == 0))
-                    Imprimir(aux);
-                else if ((strcmp(tipo,"T")) && (strcmp(pesquisa, lista->telefone)  == 0))
-                    Imprimir(aux);
-                else if ((strcmp(tipo,"E")) && (strcmp(pesquisa, lista->endereco)   == 0))
-                    Imprimir(aux);
-                else
-                printf("\nELEMENTO NAO ENCONTRADO!\n");
+                if      (tipo == 'N' || tipo == 'n' && (strcmp(pesquisa, aux->nome)      == 0))
+                {
+                	Imprimir(aux);
+                	break;
+				}                    
+                else if (tipo == 'T' || tipo == 't' && (strcmp(pesquisa, aux->telefone)  == 0))
+                {
+                	Imprimir(aux);
+                	break;
+				}                    
+                else if (tipo == 'E' || tipo == 'e' && (strcmp(pesquisa, aux->endereco)   == 0))
+                {
+                	Imprimir(aux);
+                	break;
+				}                
+				
             }
+            	if(aux == NULL)
+				{
+					printf("\nELEMENTO NAO ENCONTRADO!\n");	
+				}
     }else
-     printf("\nA LISTA ESTÁ VAZIA!\n");
-     getchar();
+     printf("\nA LISTA ESTA VAZIA! Precione ENTER para continuar\n");
+     getchar();getchar();
 }
-
-
-
-//Pesquisar Elementos da Lista
-void PesquisarAlterar(No* lista)
-{
-    if(vazia(lista) > 0)
-    {
-        char pesquisa[100], tipo[1];
-        system("cls");
-        printf("\nPESQUISAR POR: NOME [N], TELEFONE [T] ou ENDERECO [E]? ");
-        getchar();
-        gets(tipo);
-        printf("----->INFORME OS DADOS DA PESQUISA: ");
-        gets(pesquisa);
-
-        No* aux;
-            for(aux = lista;aux != NULL;aux = aux->proximo)
-            {
-                if      ((strcmp(tipo,"N")) && (strcmp(pesquisa, lista->nome)      == 0))
-                    ImprimirAlterar(aux);
-                else if ((strcmp(tipo,"T")) && (strcmp(pesquisa, lista->telefone)  == 0))
-                    ImprimirAlterar(aux);
-                else if ((strcmp(tipo,"E")) && (strcmp(pesquisa, lista->endereco)   == 0))
-                    ImprimirAlterar(aux);
-                else
-                printf("ELEMENTO NAO ENCONTRADO!");
-            }
-    }else
-     printf("A LISTA ESTÁ VAZIA!\n");
-     getchar();
-}
-
 //************************************************ FIM PESQUISAR ********************************************************//
 
 //************************************************ INÍCIO IMPRIMIR ******************************************************//
@@ -147,21 +128,11 @@ int Imprimir (No* lista)
         printf("PRESSIONE [ENTER] PARA VOLTAR AO MENU INICIAR.\n");
 }
 
-//Imprimi Lista Alterada
-int ImprimirAlterar (No* lista)
-{
-        printf("\n\nOPERACAO SUCEDIDA COM SUCESSO!\n\n");
-        printf("Nome    :%s\n", lista->nome    );
-        printf("Telefone:%s\n", lista->telefone);
-        printf("endereco :%s\n", lista->endereco );
-        printf("\n\n");
-        printf("PRESSIONE [ENTER] PARA ALTERAR CONTATO.\n");
-}
 //************************************************ FIM IMPRIMIR *********************************************************//
 
 
 
-//RAY LIST
+//FUNCAO LISTAR
 void Listar(No* lista)
 {
     if(vazia(lista) > 0)
@@ -179,32 +150,6 @@ void Listar(No* lista)
 }
 
 
-//Troca os elementos da lista
-No* Alterar(No* lista)
-{
-    if(vazia(lista) > 0)
-    {
-        PesquisarAlterar(lista);
-		
-		system("cls");       
-
-           printf("*********************** DIGITE OS NOVOS DADOS ***********************: ");
-           printf("\nDIGITE SEU NOME COMPLETO: ");
-           gets  (lista->nome    );
-           printf("TELEFONE                  : ");
-           gets  (lista->telefone);
-           printf("ENDERECO                  : ");
-           gets  (lista->endereco );
-
-           printf("\n\n\n[ALTERADO]!");
-
-    }else
-    printf("\nA LISTA ESTÁ VAZIA!");
-    printf("\nPRESSIONE [ENTER] PARA VOLTAR AO MENU INICIAR.\n");
-    getchar();
-    return lista;
-}
-
 //Deleta elementos da lista
 No* Deletar (No* lista)
 {
@@ -219,7 +164,7 @@ No* Deletar (No* lista)
         gets(name);
 
 
-        while(aux != NULL && strcmp(aux->nome, name) != 0)
+        while(aux != NULL && strcmp(aux->nome, name) != 0) //Laço para percorrer a struct para eliminar e liberar a memoria
         {
             ant = aux;
             aux = aux->proximo;
@@ -267,19 +212,20 @@ void main()
     No* lista;
     lista = inicializa();
 
+//opcoes do menu principal
     int opcao = Menu();
     while (opcao != 6 )
     {          
 		  switch (opcao)
 		  {
 			  case 1:
-					lista = Incluir(lista);
+					lista = Incluir(lista);//chamada de funcao para incluir
 					break;
 			  case 2:
-					Pesquisar(lista);
+					Pesquisar(lista);//chamada de funcao para pesquisar
 					break;
 			  case 3:
-					lista = Deletar(lista);
+					lista = Deletar(lista);//chamada de funcao apagar
 					break;
 			  case 4:
 					system("cls");
